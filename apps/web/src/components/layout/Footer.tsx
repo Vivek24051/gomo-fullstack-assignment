@@ -58,7 +58,9 @@ export function Footer({ data }: { data: FooterData | null }) {
     contactHeading,
     contactPhone,
     contactEmail,
+    visitingAddressLabel,
     visitingAddress,
+    postalAddressLabel,
     postalAddress,
     socialLinks,
     isoBadges,
@@ -105,12 +107,26 @@ export function Footer({ data }: { data: FooterData | null }) {
           {hasContact ? (
             <div>
               {contactHeading ? <h3 className="text-sm font-medium text-cream">{contactHeading}</h3> : null}
-              <ul className="mt-4 flex flex-col gap-2 text-sm text-cream/70">
-                {contactPhone ? <li>{contactPhone}</li> : null}
-                {contactEmail ? <li>{contactEmail}</li> : null}
-                {visitingAddress ? <li className="whitespace-pre-line">{visitingAddress}</li> : null}
-                {postalAddress ? <li className="whitespace-pre-line">{postalAddress}</li> : null}
-              </ul>
+              <div className="mt-4 flex flex-col gap-4 text-sm text-cream/70">
+                {contactPhone || contactEmail ? (
+                  <ul className="flex flex-col gap-2">
+                    {contactPhone ? <li>{contactPhone}</li> : null}
+                    {contactEmail ? <li>{contactEmail}</li> : null}
+                  </ul>
+                ) : null}
+                {visitingAddress ? (
+                  <div>
+                    {visitingAddressLabel ? <p className="text-cream">{visitingAddressLabel}</p> : null}
+                    <p className="whitespace-pre-line">{visitingAddress}</p>
+                  </div>
+                ) : null}
+                {postalAddress ? (
+                  <div>
+                    {postalAddressLabel ? <p className="text-cream">{postalAddressLabel}</p> : null}
+                    <p className="whitespace-pre-line">{postalAddress}</p>
+                  </div>
+                ) : null}
+              </div>
             </div>
           ) : null}
         </div>
@@ -121,35 +137,39 @@ export function Footer({ data }: { data: FooterData | null }) {
 
           <NewsletterForm />
 
-          {socialLinks.length > 0 ? (
-            <div className="mt-6 flex gap-3">
-              {socialLinks.map((social) => (
-                <Link
-                  key={social.id}
-                  href={social.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={social.platform}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-cream/30 text-cream"
-                >
-                  <span className="h-4 w-4">{socialIcons[social.platform]}</span>
-                </Link>
-              ))}
-            </div>
-          ) : null}
-
-          {badges.length > 0 ? (
-            <div className="mt-6 flex gap-4">
-              {badges.map((badge) => (
-                <div key={badge.id} className="relative h-12 w-12">
-                  <Image
-                    src={getStrapiMediaURL(badge.url, badge.updatedAt)}
-                    alt={badge.alternativeText ?? ''}
-                    fill
-                    className="object-contain"
-                  />
+          {badges.length > 0 || socialLinks.length > 0 ? (
+            <div className="mt-6 flex items-center justify-between gap-4">
+              {badges.length > 0 ? (
+                <div className="flex gap-4">
+                  {badges.map((badge) => (
+                    <div key={badge.id} className="relative h-12 w-12">
+                      <Image
+                        src={getStrapiMediaURL(badge.url, badge.updatedAt)}
+                        alt={badge.alternativeText ?? ''}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  ))}
                 </div>
-              ))}
+              ) : null}
+
+              {socialLinks.length > 0 ? (
+                <div className="flex gap-3">
+                  {socialLinks.map((social) => (
+                    <Link
+                      key={social.id}
+                      href={social.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={social.platform}
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-cream/30 text-cream"
+                    >
+                      <span className="h-4 w-4">{socialIcons[social.platform]}</span>
+                    </Link>
+                  ))}
+                </div>
+              ) : null}
             </div>
           ) : null}
         </div>

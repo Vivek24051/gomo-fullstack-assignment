@@ -222,7 +222,9 @@ export interface FooterData extends StrapiEntity {
   contactHeading: string | null;
   contactPhone: string | null;
   contactEmail: string | null;
+  visitingAddressLabel: string | null;
   visitingAddress: string | null;
+  postalAddressLabel: string | null;
   postalAddress: string | null;
   socialLinks: SocialLink[];
   // Strapi returns `null` (not `[]`) for an unpopulated multi-media field —

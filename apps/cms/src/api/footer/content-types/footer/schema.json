@@ -36,8 +36,16 @@
     "contactEmail": {
       "type": "string"
     },
+    "visitingAddressLabel": {
+      "type": "string",
+      "default": "Visiting address"
+    },
     "visitingAddress": {
       "type": "text"
+    },
+    "postalAddressLabel": {
+      "type": "string",
+      "default": "Postal address"
     },
     "postalAddress": {
       "type": "text"
