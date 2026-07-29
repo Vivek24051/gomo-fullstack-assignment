@@ -1,3 +1,4 @@
+import { CaseStudies } from '@/components/sections/CaseStudies';
 import { Hero } from '@/components/sections/Hero';
 import { IndustryShowcase } from '@/components/sections/IndustryShowcase';
 import { IntroStats } from '@/components/sections/IntroStats';
@@ -57,6 +58,8 @@ export function PageBuilder({ sections }: { sections: PageSection[] }) {
             return <IndustryShowcase key={key} {...section} />;
 
           case 'sections.case-studies-carousel':
+            return <CaseStudies key={key} {...section} />;
+
           case 'sections.insights-grid':
           case 'sections.cta-banner':
             return (
