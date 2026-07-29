@@ -30,7 +30,9 @@ export function IntroStats({
       </Container>
 
       {image || body ? (
-        <Container className="mt-16 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+        <Container
+          className={`mt-16 grid grid-cols-1 items-center gap-10 ${image && body ? 'lg:grid-cols-2' : ''}`}
+        >
           {image ? (
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
               <Image

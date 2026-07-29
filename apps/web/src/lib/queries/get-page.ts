@@ -51,3 +51,18 @@ export async function getPageBySlug(slug: string): Promise<Page | null> {
 
   return res.data[0] ?? null;
 }
+
+/** Slug + updatedAt only — used by app/sitemap.ts, not the full page payload. */
+export async function getAllPageSlugs(): Promise<Pick<Page, 'slug' | 'updatedAt'>[]> {
+  const query = qs.stringify(
+    { fields: ['slug', 'updatedAt'], pagination: { pageSize: 100 } },
+    { encodeValuesOnly: true },
+  );
+
+  const res = await strapiFetch<StrapiCollectionResponse<Pick<Page, 'slug' | 'updatedAt'>>>(
+    `/pages?${query}`,
+    { tags: ['pages'] },
+  );
+
+  return res.data;
+}

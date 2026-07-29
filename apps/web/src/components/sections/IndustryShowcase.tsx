@@ -23,9 +23,9 @@ export function IndustryShowcase({ kicker, heading, industries }: IndustryShowca
 
       {active ? (
         <Container className="mt-14 grid grid-cols-1 overflow-hidden rounded-2xl lg:grid-cols-[320px_1fr]">
-          <div className="flex flex-col justify-center gap-1 bg-ink px-8 py-10">
+          <ul className="flex flex-col justify-center gap-1 bg-ink px-8 py-10">
             {industries.map((industry, index) => (
-              <div
+              <li
                 key={industry.id}
                 className={`flex items-center justify-between gap-2 py-3 text-lg ${
                   index === 0 ? 'text-cream' : 'text-cream/40'
@@ -33,9 +33,9 @@ export function IndustryShowcase({ kicker, heading, industries }: IndustryShowca
               >
                 <span>{industry.name}</span>
                 {index === 0 ? <span aria-hidden="true">→</span> : null}
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
 
           <div className="relative min-h-[360px]">
             <Image

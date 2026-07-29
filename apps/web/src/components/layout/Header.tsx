@@ -59,7 +59,7 @@ export function Header({ data }: { data: HeaderData | null }) {
                 </span>
               )}
               {item.children.length > 0 ? (
-                <div className="invisible absolute top-full left-0 z-10 min-w-40 rounded-md border border-ink/10 bg-cream py-2 opacity-0 shadow-md transition-opacity group-hover:visible group-hover:opacity-100">
+                <div className="invisible absolute top-full left-0 z-10 min-w-40 rounded-md border border-ink/10 bg-cream py-2 opacity-0 shadow-md transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                   {item.children.map((child) => (
                     <Link
                       key={child.id}

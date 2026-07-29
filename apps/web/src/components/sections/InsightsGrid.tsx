@@ -31,35 +31,44 @@ export function InsightsGrid({ kicker, heading, ctaLabel, ctaHref, insights }: I
         <Container className="mt-14 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {insights.map((insight) => {
             const displayDate = formatDate(insight.date);
+            const cardClassName = 'group relative flex aspect-[4/3] flex-col overflow-hidden rounded-xl';
+            const cardContent = (
+              <>
+                <Image
+                  src={getStrapiMediaURL(insight.image.url, insight.image.updatedAt)}
+                  alt={insight.image.alternativeText ?? ''}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                <div
+                  className="absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-transparent"
+                  aria-hidden="true"
+                />
+                <div className="relative z-10 flex h-full flex-col justify-between p-4">
+                  {insight.tag ? (
+                    <span className="w-fit rounded-full bg-cream px-3 py-1 text-xs font-medium text-ink">
+                      {insight.tag}
+                    </span>
+                  ) : (
+                    <span />
+                  )}
+                  <h3 className="text-lg font-medium text-cream">{insight.title}</h3>
+                </div>
+              </>
+            );
 
             return (
               <article key={insight.id} className="flex flex-col">
-                <Link
-                  href={insight.href ?? '#'}
-                  className="group relative flex aspect-[4/3] flex-col overflow-hidden rounded-xl"
-                >
-                  <Image
-                    src={getStrapiMediaURL(insight.image.url, insight.image.updatedAt)}
-                    alt={insight.image.alternativeText ?? ''}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <div
-                    className="absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-transparent"
-                    aria-hidden="true"
-                  />
-                  <div className="relative z-10 flex h-full flex-col justify-between p-4">
-                    {insight.tag ? (
-                      <span className="w-fit rounded-full bg-cream px-3 py-1 text-xs font-medium text-ink">
-                        {insight.tag}
-                      </span>
-                    ) : (
-                      <span />
-                    )}
-                    <h3 className="text-lg font-medium text-cream">{insight.title}</h3>
-                  </div>
-                </Link>
+                {/* No dead `#` link: without an href this renders as a plain
+                    container instead of an anchor that goes nowhere. */}
+                {insight.href ? (
+                  <Link href={insight.href} className={cardClassName}>
+                    {cardContent}
+                  </Link>
+                ) : (
+                  <div className={cardClassName}>{cardContent}</div>
+                )}
 
                 <div className="mt-3 flex items-center justify-between text-sm text-ink/60">
                   <span>{displayDate ?? ''}</span>

@@ -23,13 +23,13 @@ export function buildMetadata(seo: SeoComponent | null, global: GlobalData | nul
     openGraph: {
       title: title ?? undefined,
       description,
-      images: ogImage ? [{ url: getStrapiMediaURL(ogImage.url) }] : undefined,
+      images: ogImage ? [{ url: getStrapiMediaURL(ogImage.url, ogImage.updatedAt) }] : undefined,
     },
     twitter: {
       card: 'summary_large_image',
       title: title ?? undefined,
       description,
-      images: ogImage ? [getStrapiMediaURL(ogImage.url)] : undefined,
+      images: ogImage ? [getStrapiMediaURL(ogImage.url, ogImage.updatedAt)] : undefined,
     },
   };
 }
