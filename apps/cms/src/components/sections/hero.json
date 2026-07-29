@@ -20,7 +20,7 @@
     "backgroundImage": {
       "type": "media",
       "multiple": false,
-      "allowedTypes": ["images"],
+      "allowedTypes": ["images", "videos"],
       "required": true
     },
     "showScrollCue": {
