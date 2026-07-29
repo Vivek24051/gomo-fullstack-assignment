@@ -1,6 +1,7 @@
 import { CaseStudies } from '@/components/sections/CaseStudies';
 import { Hero } from '@/components/sections/Hero';
 import { IndustryShowcase } from '@/components/sections/IndustryShowcase';
+import { InsightsGrid } from '@/components/sections/InsightsGrid';
 import { IntroStats } from '@/components/sections/IntroStats';
 import { WhyChooseUs } from '@/components/sections/WhyChooseUs';
 import type { PageSection } from '@/lib/strapi/types';
@@ -61,15 +62,12 @@ export function PageBuilder({ sections }: { sections: PageSection[] }) {
             return <CaseStudies key={key} {...section} />;
 
           case 'sections.insights-grid':
+            return <InsightsGrid key={key} {...section} />;
+
           case 'sections.cta-banner':
-            return (
-              <UnimplementedSection
-                key={key}
-                component={section.__component}
-                heading={section.heading}
-                kicker={'kicker' in section ? section.kicker : null}
-              />
-            );
+            // CtaBannerSection has no `kicker` field (confirmed in lib/strapi/types.ts) —
+            // unlike the other section types, so no guard needed here.
+            return <UnimplementedSection key={key} component={section.__component} heading={section.heading} />;
 
           default:
             // `section` is typed `never` here since the switch is exhaustive over the
