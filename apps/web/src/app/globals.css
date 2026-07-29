@@ -2,10 +2,10 @@
 
 :root {
   --background: #f4ede1;
-  --foreground: #1b2b27;
-  --color-ink: #1b2b27;
+  --foreground: #1E2E31;
+  --color-ink: #1E2E31;
   --color-cream: #f4ede1;
-  --color-sage: #b9c8bf;
+  --color-sage: #B8D1D1;
 }
 
 @theme inline {
@@ -17,6 +17,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-display);
+  --font-title: var(--font-title);
 }
 
 body {

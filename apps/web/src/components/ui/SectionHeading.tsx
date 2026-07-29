@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 export function SectionHeading({ children, className = '' }: { children: ReactNode; className?: string }) {
   return (
     <h2
-      className={`font-display text-3xl leading-tight font-medium text-ink sm:text-4xl lg:text-5xl ${className}`}
+      className={`font-title text-center text-[36px] leading-[48px] font-normal tracking-[0] text-ink ${className}`}
     >
       {children}
     </h2>
