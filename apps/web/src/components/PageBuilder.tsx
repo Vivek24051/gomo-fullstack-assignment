@@ -1,5 +1,6 @@
 import { Hero } from '@/components/sections/Hero';
 import { IntroStats } from '@/components/sections/IntroStats';
+import { WhyChooseUs } from '@/components/sections/WhyChooseUs';
 import type { PageSection } from '@/lib/strapi/types';
 
 /**
@@ -48,8 +49,10 @@ export function PageBuilder({ sections }: { sections: PageSection[] }) {
           case 'sections.intro-stats':
             return <IntroStats key={key} {...section} />;
 
-          case 'sections.industry-showcase':
           case 'sections.why-choose-us':
+            return <WhyChooseUs key={key} {...section} />;
+
+          case 'sections.industry-showcase':
           case 'sections.case-studies-carousel':
           case 'sections.insights-grid':
           case 'sections.cta-banner':
