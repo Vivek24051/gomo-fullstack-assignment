@@ -1,0 +1,13 @@
+node_modules
+.next
+out
+build
+dist
+coverage
+.vercel
+*.lock
+package-lock.json
+next-env.d.ts
+apps/cms/.tmp
+apps/cms/dist
+apps/cms/build

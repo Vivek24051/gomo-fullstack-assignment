@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+
+# env
+.env
+.env.local
+.env.*.local
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+
+# Strapi (apps/cms, once initialized)
+apps/cms/.tmp
+apps/cms/.cache
+apps/cms/build
+apps/cms/dist
+apps/cms/exports
+
+# misc
+*.log
