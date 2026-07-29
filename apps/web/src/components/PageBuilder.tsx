@@ -1,10 +1,11 @@
+import { Hero } from '@/components/sections/Hero';
 import type { PageSection } from '@/lib/strapi/types';
 
 /**
- * Temporary stand-in for every section renderer (Hero, IntroStats, etc. — Milestone 4
- * scope). Deliberately unstyled/minimal: this exists to prove the CMS → typed fetch →
- * registry dispatch → render pipeline end-to-end without pre-building throwaway UI.
- * The heading/kicker shown are the real fetched CMS values, not fixtures.
+ * Temporary stand-in for every section renderer not yet built. Deliberately
+ * unstyled/minimal: proves the CMS → typed fetch → dispatch → render pipeline for
+ * sections still pending, without pre-building throwaway UI. The heading/kicker
+ * shown are the real fetched CMS values, not fixtures.
  */
 function UnimplementedSection({
   component,
@@ -18,7 +19,7 @@ function UnimplementedSection({
   return (
     <section data-section={component} className="border-y border-dashed border-gray-300 p-6">
       <p className="text-xs tracking-wide text-gray-400 uppercase">
-        {component} — UI not implemented yet (Milestone 4)
+        {component} — UI not implemented yet
       </p>
       {kicker ? <p className="mt-2 text-sm text-gray-500">{kicker}</p> : null}
       <h2 className="mt-1 text-xl font-semibold text-gray-800">{heading}</h2>
@@ -27,42 +28,47 @@ function UnimplementedSection({
 }
 
 /**
- * `__component` → renderer registry. All seven known section types currently point at
- * the same placeholder (Milestone 3 scope); an entry whose `__component` isn't in this
- * map is skipped with a dev-only warning instead of crashing — forward-compatible with
- * new section types added in the CMS later without a frontend deploy.
+ * `__component` → renderer dispatch. A `switch` (rather than an object registry) so
+ * each case narrows `section` to its exact Strapi type — `<Hero {...section} />` gets
+ * fully-typed props, not a loosely-typed common subset. An unrecognized `__component`
+ * (a new section type added in the CMS later) is skipped with a dev-only warning
+ * instead of crashing — forward-compatible without a frontend deploy.
  */
-const sectionRegistry: Record<PageSection['__component'], true> = {
-  'sections.hero': true,
-  'sections.intro-stats': true,
-  'sections.industry-showcase': true,
-  'sections.why-choose-us': true,
-  'sections.case-studies-carousel': true,
-  'sections.insights-grid': true,
-  'sections.cta-banner': true,
-};
-
 export function PageBuilder({ sections }: { sections: PageSection[] }) {
   return (
     <>
       {sections.map((section) => {
-        if (!(section.__component in sectionRegistry)) {
-          if (process.env.NODE_ENV !== 'production') {
-            console.warn(`PageBuilder: no renderer registered for "${section.__component}"`);
-          }
-          return null;
+        const key = `${section.__component}-${section.id}`;
+
+        switch (section.__component) {
+          case 'sections.hero':
+            return <Hero key={key} {...section} />;
+
+          case 'sections.intro-stats':
+          case 'sections.industry-showcase':
+          case 'sections.why-choose-us':
+          case 'sections.case-studies-carousel':
+          case 'sections.insights-grid':
+          case 'sections.cta-banner':
+            return (
+              <UnimplementedSection
+                key={key}
+                component={section.__component}
+                heading={section.heading}
+                kicker={'kicker' in section ? section.kicker : null}
+              />
+            );
+
+          default:
+            // `section` is typed `never` here since the switch is exhaustive over the
+            // current PageSection union — but a real, unrecognized __component can
+            // still arrive at runtime if the CMS adds a section type before the
+            // frontend's types catch up, so this branch stays as a graceful skip.
+            if (process.env.NODE_ENV !== 'production') {
+              console.warn('PageBuilder: no renderer registered for section', section);
+            }
+            return null;
         }
-
-        const kicker = 'kicker' in section ? section.kicker : null;
-
-        return (
-          <UnimplementedSection
-            key={`${section.__component}-${section.id}`}
-            component={section.__component}
-            heading={section.heading}
-            kicker={kicker}
-          />
-        );
       })}
     </>
   );
