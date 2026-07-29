@@ -65,6 +65,7 @@ export function Footer({ data }: { data: FooterData | null }) {
     socialLinks,
     isoBadges,
     legalLinks,
+    rightsReservedText,
     copyrightText,
   } = data;
 
@@ -72,20 +73,20 @@ export function Footer({ data }: { data: FooterData | null }) {
   const badges = isoBadges ?? [];
 
   return (
-    <footer className="mt-auto overflow-hidden bg-ink text-cream">
+    <footer className="mt-auto overflow-hidden bg-[#222222] text-cream">
       {wordmark ? (
         <p
           aria-hidden="true"
-          className="-mb-6 truncate px-4 pt-8 text-center font-display text-[18vw] leading-none font-medium text-cream/10 select-none sm:text-[14vw]"
+          className="-mb-6 truncate px-4 pt-8 text-center font-display text-[18vw] leading-none font-medium text-black select-none sm:text-[14vw]"
         >
           {wordmark}
         </p>
       ) : null}
 
       <Container className="grid grid-cols-1 gap-12 py-16 lg:grid-cols-[2fr_1fr]">
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="grid min-w-0 grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-4">
           {columns.map((column) => (
-            <div key={column.id}>
+            <div key={column.id} className="min-w-0">
               <h3 className="text-sm font-medium text-cream">{column.title}</h3>
               <ul className="mt-4 flex flex-col gap-2">
                 {column.links.map((link) => (
@@ -105,13 +106,13 @@ export function Footer({ data }: { data: FooterData | null }) {
           ))}
 
           {hasContact ? (
-            <div>
+            <div className="min-w-0">
               {contactHeading ? <h3 className="text-sm font-medium text-cream">{contactHeading}</h3> : null}
               <div className="mt-4 flex flex-col gap-4 text-sm text-cream/70">
                 {contactPhone || contactEmail ? (
                   <ul className="flex flex-col gap-2">
-                    {contactPhone ? <li>{contactPhone}</li> : null}
-                    {contactEmail ? <li>{contactEmail}</li> : null}
+                    {contactPhone ? <li className="break-words">{contactPhone}</li> : null}
+                    {contactEmail ? <li className="break-words">{contactEmail}</li> : null}
                   </ul>
                 ) : null}
                 {visitingAddress ? (
@@ -131,7 +132,7 @@ export function Footer({ data }: { data: FooterData | null }) {
           ) : null}
         </div>
 
-        <div>
+        <div className="min-w-0">
           {newsletterHeading ? <h3 className="font-display text-xl text-cream">{newsletterHeading}</h3> : null}
           {newsletterSubtext ? <p className="mt-2 text-sm text-cream/70">{newsletterSubtext}</p> : null}
 
@@ -175,9 +176,10 @@ export function Footer({ data }: { data: FooterData | null }) {
         </div>
       </Container>
 
-      <div className="border-t border-cream/10">
-        <Container className="flex flex-col items-center justify-between gap-3 py-6 text-xs text-cream/60 sm:flex-row">
-          {copyrightText ? <span>{copyrightText}</span> : <span />}
+      <div className="bg-[#A68AA4]">
+        <Container className="flex flex-col items-center justify-between gap-3 py-4 text-xs text-ink/70 sm:flex-row">
+          {rightsReservedText ? <span>{rightsReservedText}</span> : <span />}
+          {copyrightText ? <span>{copyrightText}</span> : null}
           {legalLinks.length > 0 ? (
             <div className="flex flex-wrap items-center justify-center gap-4">
               {legalLinks.map((link) => (
@@ -186,7 +188,7 @@ export function Footer({ data }: { data: FooterData | null }) {
                   href={link.href}
                   target={link.openInNewTab ? '_blank' : undefined}
                   rel={link.openInNewTab ? 'noreferrer' : undefined}
-                  className="hover:text-cream"
+                  className="hover:text-ink"
                 >
                   {link.label}
                 </Link>

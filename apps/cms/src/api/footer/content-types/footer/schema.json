@@ -65,6 +65,10 @@
       "component": "layout.link",
       "repeatable": true
     },
+    "rightsReservedText": {
+      "type": "string",
+      "default": "All rights reserved"
+    },
     "copyrightText": {
       "type": "string"
     }

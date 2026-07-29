@@ -231,6 +231,7 @@ export interface FooterData extends StrapiEntity {
   // confirmed live — unlike relations/components, which default to `[]`.
   isoBadges: StrapiMedia[] | null;
   legalLinks: LinkItem[];
+  rightsReservedText: string | null;
   copyrightText: string | null;
 }
 
