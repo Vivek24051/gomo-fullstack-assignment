@@ -21,6 +21,8 @@
   "overrides": {
     "ajv-draft-04": {
       "ajv": "^8.17.1"
-    }
+    },
+    "@types/react": "^19",
+    "@types/react-dom": "^19"
   }
 }
