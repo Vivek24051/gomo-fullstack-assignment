@@ -109,6 +109,11 @@ export interface Brand extends StrapiEntity {
   logo: StrapiMedia;
 }
 
+export interface NewsletterSignup extends StrapiEntity {
+  email: string;
+  source: string | null;
+}
+
 // ---- Dynamic Zone section components ----
 // `__component` is Strapi's discriminant field — PageBuilder switches on it.
 

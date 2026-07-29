@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { Container } from '@/components/ui/Container';
+import { NewsletterForm } from '@/components/layout/NewsletterForm';
 import { getStrapiMediaURL } from '@/lib/strapi/media';
 import type { FooterData, SocialPlatform } from '@/lib/strapi/types';
 
@@ -120,19 +121,7 @@ export function Footer({ data }: { data: FooterData | null }) {
           {newsletterHeading ? <h3 className="font-display text-xl text-cream">{newsletterHeading}</h3> : null}
           {newsletterSubtext ? <p className="mt-2 text-sm text-cream/70">{newsletterSubtext}</p> : null}
 
-          {/* Visual only for now — no submit handler wired yet; the backend API
-              route for this is separate, later scope. */}
-          <form className="mt-5 flex items-center gap-2 border-b border-cream/30 pb-2">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email address"
-              className="w-full bg-transparent text-sm text-cream placeholder:text-cream/50 focus:outline-none"
-            />
-            <button type="submit" aria-label="Subscribe" className="shrink-0 text-cream">
-              <span aria-hidden="true">→</span>
-            </button>
-          </form>
+          <NewsletterForm />
 
           {socialLinks.length > 0 ? (
             <div className="mt-6 flex gap-3">

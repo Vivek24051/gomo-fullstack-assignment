@@ -30,6 +30,10 @@ interface StrapiFetchOptions {
   tags?: string[];
   /** Seconds until this fetch is considered stale. Defaults to 60. */
   revalidate?: number;
+  /** Defaults to GET. Mutations (POST) skip ISR caching entirely — see below. */
+  method?: 'GET' | 'POST';
+  /** JSON-serialized as the request body when present. */
+  body?: unknown;
 }
 
 /**
@@ -40,15 +44,21 @@ interface StrapiFetchOptions {
  */
 export async function strapiFetch<T>(path: string, options: StrapiFetchOptions = {}): Promise<T> {
   const url = `${STRAPI_URL}/api${path}`;
+  const isMutation = options.method === 'POST';
 
   let res: Response;
   try {
     res = await fetch(url, {
-      headers: STRAPI_API_TOKEN ? { Authorization: `Bearer ${STRAPI_API_TOKEN}` } : {},
-      next: {
-        revalidate: options.revalidate ?? DEFAULT_REVALIDATE_SECONDS,
-        tags: options.tags,
+      method: options.method ?? 'GET',
+      headers: {
+        ...(STRAPI_API_TOKEN ? { Authorization: `Bearer ${STRAPI_API_TOKEN}` } : {}),
+        ...(options.body !== undefined ? { 'Content-Type': 'application/json' } : {}),
       },
+      body: options.body !== undefined ? JSON.stringify(options.body) : undefined,
+      // ISR's revalidate/tags model doesn't apply to a write — never cache a mutation.
+      ...(isMutation
+        ? { cache: 'no-store' as const }
+        : { next: { revalidate: options.revalidate ?? DEFAULT_REVALIDATE_SECONDS, tags: options.tags } }),
     });
   } catch (cause) {
     throw new StrapiError(`Could not reach Strapi at ${STRAPI_URL} — is it running?`, 0, path, {
