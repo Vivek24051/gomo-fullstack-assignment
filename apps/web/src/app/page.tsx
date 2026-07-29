@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
 import { PageBuilder } from '@/components/PageBuilder';
+import { WeatherWidget, WeatherWidgetSkeleton } from '@/components/WeatherWidget';
 import { getGlobal } from '@/lib/queries/get-global';
 import { getPageBySlug } from '@/lib/queries/get-page';
 import { buildMetadata } from '@/lib/seo';
@@ -19,5 +21,12 @@ export default async function HomePage() {
     notFound();
   }
 
-  return <PageBuilder sections={page.sections} />;
+  return (
+    <>
+      <PageBuilder sections={page.sections} />
+      <Suspense fallback={<WeatherWidgetSkeleton />}>
+        <WeatherWidget />
+      </Suspense>
+    </>
+  );
 }
