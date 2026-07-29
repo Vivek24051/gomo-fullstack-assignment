@@ -35,7 +35,7 @@ export function Header({ data }: { data: HeaderData | null }) {
       <Container className="flex h-20 items-center justify-between gap-6">
         <Link href="/" className="shrink-0">
           <Image
-            src={getStrapiMediaURL(logo.url)}
+            src={getStrapiMediaURL(logo.url, logo.updatedAt)}
             alt={logo.alternativeText ?? ''}
             width={120}
             height={40}

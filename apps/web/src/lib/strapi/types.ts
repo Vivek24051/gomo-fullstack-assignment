@@ -12,6 +12,8 @@ export interface StrapiMedia {
   width: number | null;
   height: number | null;
   mime: string;
+  // Used for cache-busting in getStrapiMediaURL — see that function for why.
+  updatedAt: string;
 }
 
 export interface StrapiEntity {

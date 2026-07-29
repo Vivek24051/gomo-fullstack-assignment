@@ -6,7 +6,7 @@ export function Hero({ kicker, heading, subheading, backgroundImage, showScrollC
   return (
     <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden">
       <Image
-        src={getStrapiMediaURL(backgroundImage.url)}
+        src={getStrapiMediaURL(backgroundImage.url, backgroundImage.updatedAt)}
         alt={backgroundImage.alternativeText ?? ''}
         fill
         priority
