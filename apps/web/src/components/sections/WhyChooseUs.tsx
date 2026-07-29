@@ -8,7 +8,7 @@ import type { WhyChooseUsSection } from '@/lib/strapi/types';
 
 export function WhyChooseUs({ kicker, heading, ctaLabel, ctaHref, features }: WhyChooseUsSection) {
   return (
-    <section className="py-20 sm:py-28">
+    <section className="py-10 sm:py-14">
       <Container>
         <div className="rounded-2xl bg-sage px-6 py-16 sm:px-10 lg:px-16">
           <div className="flex flex-col items-center text-center">

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { BrandsScroller } from '@/components/sections/BrandsScroller';
 import { ArrowLink } from '@/components/ui/ArrowLink';
 import { Container } from '@/components/ui/Container';
 import { Kicker } from '@/components/ui/Kicker';
@@ -18,7 +19,7 @@ export function IntroStats({
   brands,
 }: IntroStatsSection) {
   return (
-    <section className="py-20 sm:py-28">
+    <section className="py-10 sm:py-14">
       <Container className="flex flex-col items-center text-center">
         {kicker ? <Kicker>{kicker}</Kicker> : null}
         <SectionHeading className="mt-4 max-w-3xl">{heading}</SectionHeading>
@@ -68,22 +69,14 @@ export function IntroStats({
               <Kicker>{brandsHeading}</Kicker>
             </Container>
           ) : null}
-          <div className="mt-8 flex gap-4 overflow-x-auto px-6 pb-2 sm:px-8 lg:px-12">
-            {brands.map((brand) => (
-              <div
-                key={brand.id}
-                className="flex h-20 w-40 shrink-0 items-center justify-center rounded-md border border-ink/10 p-4"
-              >
-                <Image
-                  src={getStrapiMediaURL(brand.logo.url, brand.logo.updatedAt)}
-                  alt={brand.logo.alternativeText ?? brand.name}
-                  width={120}
-                  height={48}
-                  className="h-full w-full object-contain"
-                />
-              </div>
-            ))}
-          </div>
+          <BrandsScroller
+            brands={brands.map((brand) => ({
+              id: brand.id,
+              name: brand.name,
+              logoUrl: getStrapiMediaURL(brand.logo.url, brand.logo.updatedAt),
+              logoAlt: brand.logo.alternativeText ?? brand.name,
+            }))}
+          />
         </div>
       ) : null}
     </section>
