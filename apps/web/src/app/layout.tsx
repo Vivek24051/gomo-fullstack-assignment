@@ -1,5 +1,7 @@
 import { Fraunces, Geist, Geist_Mono } from 'next/font/google';
+import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
+import { getFooter } from '@/lib/queries/get-footer';
 import { getHeader } from '@/lib/queries/get-header';
 import './globals.css';
 
@@ -28,10 +30,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Guarded: this fetch runs for every route via the shared root layout, so a
+  // Guarded: these fetches run for every route via the shared root layout, so a
   // transient CMS failure here shouldn't take down every page — error.tsx can't
   // catch errors thrown by its own parent layout, only by what's inside it.
-  const header = await getHeader().catch(() => null);
+  const [header, footer] = await Promise.all([
+    getHeader().catch(() => null),
+    getFooter().catch(() => null),
+  ]);
 
   return (
     <html
@@ -41,6 +46,7 @@ export default async function RootLayout({
       <body className="flex min-h-full flex-col font-sans">
         <Header data={header} />
         {children}
+        <Footer data={footer} />
       </body>
     </html>
   );

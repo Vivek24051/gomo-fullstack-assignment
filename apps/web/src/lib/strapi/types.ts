@@ -219,7 +219,9 @@ export interface FooterData extends StrapiEntity {
   visitingAddress: string | null;
   postalAddress: string | null;
   socialLinks: SocialLink[];
-  isoBadges: StrapiMedia[];
+  // Strapi returns `null` (not `[]`) for an unpopulated multi-media field —
+  // confirmed live — unlike relations/components, which default to `[]`.
+  isoBadges: StrapiMedia[] | null;
   legalLinks: LinkItem[];
   copyrightText: string | null;
 }
