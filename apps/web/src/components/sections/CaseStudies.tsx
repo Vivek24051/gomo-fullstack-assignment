@@ -8,9 +8,9 @@ import { getStrapiMediaURL } from '@/lib/strapi/media';
 import type { CaseStudiesCarouselSection } from '@/lib/strapi/types';
 
 /**
- * Responsive grid rather than a full scroll-snap/dot-pagination carousel — per the
- * agreed time-budget simplification for this section. Still fully CMS-driven and
- * responsive (1 col mobile, 2 tablet, 3 desktop).
+ * Horizontal scroll-snap row rather than a JS carousel with dot pagination — CSS-only,
+ * no state, but still reads and behaves like a carousel (unlike a wrapping grid, which
+ * looks broken whenever the card count isn't a multiple of the column count).
  */
 export function CaseStudies({ kicker, heading, ctaLabel, ctaHref, caseStudies }: CaseStudiesCarouselSection) {
   return (
@@ -26,18 +26,18 @@ export function CaseStudies({ kicker, heading, ctaLabel, ctaHref, caseStudies }:
       </Container>
 
       {caseStudies.length > 0 ? (
-        <Container className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 pb-4 sm:px-8 lg:px-12">
           {caseStudies.map((caseStudy) => (
             <Link
               key={caseStudy.id}
               href={caseStudy.href ?? '#'}
-              className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-xl"
+              className="group relative flex aspect-[4/5] w-[280px] shrink-0 snap-start flex-col justify-end overflow-hidden rounded-xl sm:w-[360px]"
             >
               <Image
                 src={getStrapiMediaURL(caseStudy.image.url, caseStudy.image.updatedAt)}
                 alt={caseStudy.image.alternativeText ?? ''}
                 fill
-                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                sizes="(min-width: 640px) 360px, 280px"
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent" />
@@ -54,7 +54,7 @@ export function CaseStudies({ kicker, heading, ctaLabel, ctaHref, caseStudies }:
               </div>
             </Link>
           ))}
-        </Container>
+        </div>
       ) : null}
     </section>
   );
