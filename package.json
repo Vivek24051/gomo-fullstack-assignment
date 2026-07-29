@@ -9,11 +9,18 @@
     "build": "npm run build --workspace=apps/web",
     "lint": "npm run lint --workspace=apps/web",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "cms:dev": "npm run develop --workspace=apps/cms",
+    "cms:build": "npm run build --workspace=apps/cms"
   },
   "devDependencies": {
     "eslint-config-prettier": "^10.1.8",
     "prettier": "^3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1"
+  },
+  "overrides": {
+    "ajv-draft-04": {
+      "ajv": "^8.17.1"
+    }
   }
 }

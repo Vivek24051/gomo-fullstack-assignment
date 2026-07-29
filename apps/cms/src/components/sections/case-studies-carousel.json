@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_sections_case_studies_carousels",
+  "info": {
+    "displayName": "Case Studies Carousel",
+    "icon": "picture",
+    "description": "Kicker/heading/CTA with a scroll-snap carousel of case-study cards."
+  },
+  "options": {},
+  "attributes": {
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "ctaLabel": {
+      "type": "string"
+    },
+    "ctaHref": {
+      "type": "string"
+    },
+    "caseStudies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::case-study.case-study"
+    }
+  }
+}

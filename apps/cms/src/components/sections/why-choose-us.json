@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_sections_why_choose_us",
+  "info": {
+    "displayName": "Why Choose Us",
+    "icon": "medal",
+    "description": "Teal card with kicker/heading/CTA and a 4-column icon/title/description feature grid."
+  },
+  "options": {},
+  "attributes": {
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "ctaLabel": {
+      "type": "string"
+    },
+    "ctaHref": {
+      "type": "string"
+    },
+    "features": {
+      "type": "component",
+      "component": "sections.feature-item",
+      "repeatable": true
+    }
+  }
+}

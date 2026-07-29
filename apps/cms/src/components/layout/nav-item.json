@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_layout_nav_items",
+  "info": {
+    "displayName": "Nav Item",
+    "icon": "bulletList",
+    "description": "A top-level header nav entry. Leave children empty for a plain link, or add children for a dropdown (e.g. 'Bakery & confectionery')."
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "href": {
+      "type": "string"
+    },
+    "children": {
+      "type": "component",
+      "component": "layout.link",
+      "repeatable": true
+    }
+  }
+}

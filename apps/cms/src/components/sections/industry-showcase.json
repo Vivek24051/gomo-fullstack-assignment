@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_sections_industry_showcases",
+  "info": {
+    "displayName": "Industry Showcase",
+    "icon": "grid",
+    "description": "Dark sidebar list of industries with a preview card that swaps per selection."
+  },
+  "options": {},
+  "attributes": {
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "industries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::industry.industry"
+    }
+  }
+}

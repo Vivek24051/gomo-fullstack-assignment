@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_sections_insights_grids",
+  "info": {
+    "displayName": "Insights Grid",
+    "icon": "file",
+    "description": "Kicker/heading/CTA with a 3-column grid of tag/image/title/date cards."
+  },
+  "options": {},
+  "attributes": {
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "ctaLabel": {
+      "type": "string"
+    },
+    "ctaHref": {
+      "type": "string"
+    },
+    "insights": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::insight.insight"
+    }
+  }
+}

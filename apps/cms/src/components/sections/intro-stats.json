@@ -1,0 +1,45 @@
+{
+  "collectionName": "components_sections_intro_stats",
+  "info": {
+    "displayName": "Intro Stats",
+    "icon": "chartCircle",
+    "description": "Kicker/heading intro, image + rich text two-column, stat row, and client-logo grid."
+  },
+  "options": {},
+  "attributes": {
+    "kicker": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "ctaLabel": {
+      "type": "string"
+    },
+    "ctaHref": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "body": {
+      "type": "richtext"
+    },
+    "stats": {
+      "type": "component",
+      "component": "sections.stat-item",
+      "repeatable": true
+    },
+    "brandsHeading": {
+      "type": "string"
+    },
+    "brands": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::brand.brand"
+    }
+  }
+}

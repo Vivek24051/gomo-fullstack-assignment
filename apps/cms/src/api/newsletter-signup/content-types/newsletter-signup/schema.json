@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "newsletter_signups",
+  "info": {
+    "singularName": "newsletter-signup",
+    "pluralName": "newsletter-signups",
+    "displayName": "Newsletter Signup",
+    "description": "Email addresses captured via the footer newsletter form's API route."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "source": {
+      "type": "string",
+      "default": "footer"
+    }
+  }
+}

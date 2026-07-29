@@ -1,0 +1,60 @@
+{
+  "kind": "singleType",
+  "collectionName": "footers",
+  "info": {
+    "singularName": "footer",
+    "pluralName": "footers",
+    "displayName": "Footer",
+    "description": "Site-wide footer: link columns, contact block, newsletter copy, socials, legal bar."
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "wordmark": {
+      "type": "string"
+    },
+    "columns": {
+      "type": "component",
+      "component": "layout.footer-column",
+      "repeatable": true
+    },
+    "newsletterHeading": {
+      "type": "string"
+    },
+    "newsletterSubtext": {
+      "type": "text"
+    },
+    "contactPhone": {
+      "type": "string"
+    },
+    "contactEmail": {
+      "type": "string"
+    },
+    "visitingAddress": {
+      "type": "text"
+    },
+    "postalAddress": {
+      "type": "text"
+    },
+    "socialLinks": {
+      "type": "component",
+      "component": "layout.social-link",
+      "repeatable": true
+    },
+    "isoBadges": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": ["images"]
+    },
+    "legalLinks": {
+      "type": "component",
+      "component": "layout.link",
+      "repeatable": true
+    },
+    "copyrightText": {
+      "type": "string"
+    }
+  }
+}
