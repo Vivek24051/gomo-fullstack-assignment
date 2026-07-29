@@ -25,6 +25,23 @@ function CartIcon() {
   );
 }
 
+function ChevronDownIcon({ className = '' }: { className?: string }) {
+  return (
+    <svg
+      width="10"
+      height="10"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      aria-hidden="true"
+      className={`inline-block align-middle ${className}`}
+    >
+      <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function Header({ data }: { data: HeaderData | null }) {
   if (!data) return null;
 
@@ -50,12 +67,12 @@ export function Header({ data }: { data: HeaderData | null }) {
               {item.href ? (
                 <Link href={item.href} className="text-sm text-ink hover:text-ink/70">
                   {item.label}
-                  {item.children.length > 0 ? <span aria-hidden> ⌄</span> : null}
+                  {item.children.length > 0 ? <ChevronDownIcon className="ml-1" /> : null}
                 </Link>
               ) : (
                 <span className="cursor-default text-sm text-ink">
                   {item.label}
-                  {item.children.length > 0 ? <span aria-hidden> ⌄</span> : null}
+                  {item.children.length > 0 ? <ChevronDownIcon className="ml-1" /> : null}
                 </span>
               )}
               {item.children.length > 0 ? (
@@ -79,7 +96,7 @@ export function Header({ data }: { data: HeaderData | null }) {
 
         <div className="flex items-center gap-4">
           <span className="hidden items-center gap-1 text-sm text-ink lg:inline-flex">
-            En <span aria-hidden>⌄</span>
+            En <ChevronDownIcon />
           </span>
           {ctaLabel && ctaHref ? <Button href={ctaHref}>{ctaLabel}</Button> : null}
           <CartIcon />
