@@ -77,7 +77,7 @@ export function Footer({ data }: { data: FooterData | null }) {
       {wordmark ? (
         <p
           aria-hidden="true"
-          className="-mb-6 truncate px-4 pt-8 text-center font-display text-[18vw] leading-none font-medium text-black select-none sm:text-[14vw]"
+          className="-mb-6 truncate px-4 pt-8 text-center font-display text-[18vw] leading-none font-medium text-black select-none sm:text-[25vw]"
         >
           {wordmark}
         </p>
@@ -177,11 +177,15 @@ export function Footer({ data }: { data: FooterData | null }) {
       </Container>
 
       <div className="bg-[#A68AA4]">
-        <Container className="flex flex-col items-center justify-between gap-3 py-4 text-xs text-ink/70 sm:flex-row">
+        {/* grid-cols-[1fr_auto_1fr] rather than flex justify-between: with 3 items,
+            justify-between only keeps equal *gaps* between neighbors, so a wide legal-
+            links column pulls the middle item left of true center. Equal 1fr side
+            columns keep the middle item centered regardless of either side's width. */}
+        <Container className="grid grid-cols-1 items-center gap-3 py-4 text-center text-xs text-ink/70 sm:grid-cols-[1fr_auto_1fr] sm:text-left">
           {rightsReservedText ? <span>{rightsReservedText}</span> : <span />}
-          {copyrightText ? <span>{copyrightText}</span> : null}
+          {copyrightText ? <span className="sm:text-center">{copyrightText}</span> : <span />}
           {legalLinks.length > 0 ? (
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:justify-end">
               {legalLinks.map((link) => (
                 <Link
                   key={link.id}
@@ -194,7 +198,9 @@ export function Footer({ data }: { data: FooterData | null }) {
                 </Link>
               ))}
             </div>
-          ) : null}
+          ) : (
+            <span />
+          )}
         </Container>
       </div>
     </footer>
