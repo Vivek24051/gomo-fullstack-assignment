@@ -219,6 +219,7 @@ export interface FooterData extends StrapiEntity {
   columns: FooterColumn[];
   newsletterHeading: string | null;
   newsletterSubtext: string | null;
+  contactHeading: string | null;
   contactPhone: string | null;
   contactEmail: string | null;
   visitingAddress: string | null;

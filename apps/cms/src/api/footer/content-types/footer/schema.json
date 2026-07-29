@@ -26,6 +26,10 @@
     "newsletterSubtext": {
       "type": "text"
     },
+    "contactHeading": {
+      "type": "string",
+      "default": "Contact"
+    },
     "contactPhone": {
       "type": "string"
     },

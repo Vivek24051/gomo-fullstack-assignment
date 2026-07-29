@@ -55,6 +55,7 @@ export function Footer({ data }: { data: FooterData | null }) {
     columns,
     newsletterHeading,
     newsletterSubtext,
+    contactHeading,
     contactPhone,
     contactEmail,
     visitingAddress,
@@ -80,7 +81,7 @@ export function Footer({ data }: { data: FooterData | null }) {
       ) : null}
 
       <Container className="grid grid-cols-1 gap-12 py-16 lg:grid-cols-[2fr_1fr]">
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-4">
           {columns.map((column) => (
             <div key={column.id}>
               <h3 className="text-sm font-medium text-cream">{column.title}</h3>
@@ -103,10 +104,7 @@ export function Footer({ data }: { data: FooterData | null }) {
 
           {hasContact ? (
             <div>
-              {/* No dedicated "Contact" heading field on the Footer schema — this
-                  label is fixed UI chrome, same treatment as e.g. "Read case" links
-                  elsewhere, not CMS content the schema was designed to hold. */}
-              <h3 className="text-sm font-medium text-cream">Contact</h3>
+              {contactHeading ? <h3 className="text-sm font-medium text-cream">{contactHeading}</h3> : null}
               <ul className="mt-4 flex flex-col gap-2 text-sm text-cream/70">
                 {contactPhone ? <li>{contactPhone}</li> : null}
                 {contactEmail ? <li>{contactEmail}</li> : null}
