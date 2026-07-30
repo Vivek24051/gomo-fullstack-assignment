@@ -1,6 +1,6 @@
 import { Container } from '@/components/ui/Container';
+import { WeatherSearch } from '@/components/WeatherSearch';
 import { getCurrentWeather, type Coordinates } from '@/lib/weather/client';
-import { describeWeatherCode } from '@/lib/weather/conditions';
 
 interface WeatherLocation extends Coordinates {
   label: string;
@@ -13,23 +13,24 @@ const DEFAULT_LOCATION: WeatherLocation = { latitude: 18.5204, longitude: 73.856
  * this isn't editorial content, it's a small live data feed. Rendered wrapped in
  * <Suspense> (see app/page.tsx) so a slow/unreachable external API can never delay the
  * rest of the homepage — this component resolves independently.
+ *
+ * Fetches the default location server-side (fast first paint, no client JS needed for
+ * the common case), then hands off to WeatherSearch — a Client Component — which owns
+ * the interactive "search any other city" behavior on top of that initial value.
  */
 export async function WeatherWidget({ location = DEFAULT_LOCATION }: { location?: WeatherLocation }) {
   const weather = await getCurrentWeather(location).catch(() => null);
 
   return (
     <section className="py-10">
-      <Container className="flex flex-col items-center gap-2">
-        <p className="text-xs tracking-wide text-ink uppercase">Current weather</p>
-        <div className="rounded-full border border-ink/10 px-5 py-2.5 text-sm text-ink/60">
-          {weather ? (
-            <span>
-              {location.label}: {Math.round(weather.temperatureC)}°C, {describeWeatherCode(weather.weatherCode)}
-            </span>
-          ) : (
-            <span>Weather unavailable</span>
-          )}
-        </div>
+      <Container className="flex justify-center">
+        <WeatherSearch
+          initial={
+            weather
+              ? { label: location.label, temperatureC: weather.temperatureC, weatherCode: weather.weatherCode }
+              : null
+          }
+        />
       </Container>
     </section>
   );
