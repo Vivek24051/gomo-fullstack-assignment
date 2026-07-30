@@ -21,7 +21,7 @@ const PAGE_POPULATE = {
         },
       },
       'sections.industry-showcase': {
-        populate: { industries: { populate: ['image', 'icon'] } },
+        populate: { industries: { populate: ['image'] } },
       },
       'sections.why-choose-us': {
         populate: { features: { populate: ['icon'] } },

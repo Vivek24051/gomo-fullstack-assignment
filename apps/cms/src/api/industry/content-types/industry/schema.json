@@ -16,11 +16,6 @@
       "type": "string",
       "required": true
     },
-    "icon": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": ["images"]
-    },
     "tags": {
       "type": "json"
     },

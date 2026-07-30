@@ -84,7 +84,6 @@ export interface FeatureItem {
 
 export interface Industry extends StrapiEntity {
   name: string;
-  icon: StrapiMedia | null;
   tags: string[] | null;
   description: string | null;
   // See HeaderData.logo — schema-required doesn't guarantee non-null at runtime.
