@@ -19,7 +19,7 @@ export function IndustryShowcase({ kicker, heading, industries }: IndustryShowca
       </Container>
 
       {withImage.length > 0 ? (
-        <Container className="mt-14 grid grid-cols-1 overflow-hidden rounded-3xl lg:grid-cols-[320px_1fr]">
+        <Container className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <IndustrySwitcher
             industries={withImage.map((industry) => ({
               id: industry.id,
