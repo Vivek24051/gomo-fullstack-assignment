@@ -25,7 +25,7 @@ export function IndustrySwitcher({ industries }: { industries: IndustryPreview[]
 
   return (
     <>
-      <ul className="flex flex-col justify-center gap-1 overflow-hidden rounded-3xl bg-ink px-8 py-10">
+      <ul className="flex flex-col justify-center gap-1 overflow-hidden rounded-[11px] bg-ink px-8 py-10">
         {industries.map((industry, index) => (
           <li key={industry.id}>
             <button
@@ -43,7 +43,7 @@ export function IndustrySwitcher({ industries }: { industries: IndustryPreview[]
         ))}
       </ul>
 
-      <div className="relative min-h-[360px] overflow-hidden rounded-3xl">
+      <div className="relative min-h-[360px] overflow-hidden rounded-[11px]">
         <Image
           key={active.id}
           src={active.imageUrl}
