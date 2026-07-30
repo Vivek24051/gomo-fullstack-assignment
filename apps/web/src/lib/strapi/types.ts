@@ -73,7 +73,9 @@ export interface StatItem {
 
 export interface FeatureItem {
   id: number;
-  icon: StrapiMedia;
+  // Schema marks this required, but that only validates admin saves, not the
+  // permanent presence of already-published data — see HeaderData.logo for why.
+  icon: StrapiMedia | null;
   title: string;
   description: string;
 }
@@ -85,14 +87,15 @@ export interface Industry extends StrapiEntity {
   icon: StrapiMedia | null;
   tags: string[] | null;
   description: string | null;
-  image: StrapiMedia;
+  // See HeaderData.logo — schema-required doesn't guarantee non-null at runtime.
+  image: StrapiMedia | null;
   href: string | null;
 }
 
 export interface CaseStudy extends StrapiEntity {
   title: string;
   subtitle: string | null;
-  image: StrapiMedia;
+  image: StrapiMedia | null;
   href: string | null;
 }
 
@@ -100,13 +103,13 @@ export interface Insight extends StrapiEntity {
   title: string;
   tag: string | null;
   date: string | null;
-  image: StrapiMedia;
+  image: StrapiMedia | null;
   href: string | null;
 }
 
 export interface Brand extends StrapiEntity {
   name: string;
-  logo: StrapiMedia;
+  logo: StrapiMedia | null;
 }
 
 export interface NewsletterSignup extends StrapiEntity {
@@ -123,7 +126,7 @@ export interface HeroSection {
   kicker: string | null;
   heading: string;
   subheading: string | null;
-  backgroundImage: StrapiMedia;
+  backgroundImage: StrapiMedia | null;
   showScrollCue: boolean;
 }
 
@@ -183,7 +186,7 @@ export interface CtaBannerSection {
   __component: 'sections.cta-banner';
   id: number;
   heading: string;
-  backgroundImage: StrapiMedia;
+  backgroundImage: StrapiMedia | null;
   logoMark: StrapiMedia | null;
   ctaLabel: string | null;
   ctaHref: string | null;
@@ -208,7 +211,10 @@ export interface Page extends StrapiEntity {
 }
 
 export interface HeaderData extends StrapiEntity {
-  logo: StrapiMedia;
+  // Schema marks this required, but that only validates admin saves — an already-
+  // published entry can still end up null mid-edit (e.g. media removed, not yet
+  // re-added), so the frontend can't assume it's always present.
+  logo: StrapiMedia | null;
   navItems: NavItem[];
   ctaLabel: string | null;
   ctaHref: string | null;

@@ -18,6 +18,11 @@ export function IntroStats({
   brandsHeading,
   brands,
 }: IntroStatsSection) {
+  // logo is schema-required, but that only validates admin saves — an entry can
+  // still end up with it null mid-edit. A brand card is just its logo, so an entry
+  // without one is skipped rather than shown broken.
+  const brandsWithLogo = brands.filter((brand) => brand.logo !== null);
+
   return (
     <section className="py-10 sm:py-14">
       <Container className="flex flex-col items-center text-center">
@@ -62,7 +67,7 @@ export function IntroStats({
         </Container>
       ) : null}
 
-      {brands.length > 0 ? (
+      {brandsWithLogo.length > 0 ? (
         <div className="mt-16">
           {brandsHeading ? (
             <Container className="text-center">
@@ -70,11 +75,12 @@ export function IntroStats({
             </Container>
           ) : null}
           <BrandsScroller
-            brands={brands.map((brand) => ({
+            brands={brandsWithLogo.map((brand) => ({
               id: brand.id,
               name: brand.name,
-              logoUrl: getStrapiMediaURL(brand.logo.url, brand.logo.updatedAt),
-              logoAlt: brand.logo.alternativeText ?? brand.name,
+              // Non-null assertion is safe here — filtered above.
+              logoUrl: getStrapiMediaURL(brand.logo!.url, brand.logo!.updatedAt),
+              logoAlt: brand.logo!.alternativeText ?? brand.name,
             }))}
           />
         </div>

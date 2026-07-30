@@ -25,14 +25,16 @@ export function WhyChooseUs({ kicker, heading, ctaLabel, ctaHref, features }: Wh
             <div className="mt-14 grid grid-cols-1 gap-10 border-t border-ink/15 pt-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8 lg:divide-x lg:divide-ink/15">
               {features.map((feature) => (
                 <div key={feature.id} className="lg:px-6 lg:first:pl-0">
-                  <div className="relative h-8 w-8">
-                    <Image
-                      src={getStrapiMediaURL(feature.icon.url, feature.icon.updatedAt)}
-                      alt={feature.icon.alternativeText ?? ''}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
+                  {feature.icon ? (
+                    <div className="relative h-8 w-8">
+                      <Image
+                        src={getStrapiMediaURL(feature.icon.url, feature.icon.updatedAt)}
+                        alt={feature.icon.alternativeText ?? ''}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  ) : null}
                   <h3 className="mt-4 font-medium text-ink">{feature.title}</h3>
                   <p className="mt-2 text-sm text-ink/70">{feature.description}</p>
                 </div>

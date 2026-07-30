@@ -51,14 +51,16 @@ export function Header({ data }: { data: HeaderData | null }) {
     <header className="relative border-b border-ink/10 bg-cream">
       <Container className="flex h-20 items-center justify-between gap-6">
         <Link href="/" className="shrink-0">
-          <Image
-            src={getStrapiMediaURL(logo.url, logo.updatedAt)}
-            alt={logo.alternativeText ?? ''}
-            width={120}
-            height={40}
-            className="h-8 w-auto object-contain"
-            priority
-          />
+          {logo ? (
+            <Image
+              src={getStrapiMediaURL(logo.url, logo.updatedAt)}
+              alt={logo.alternativeText ?? ''}
+              width={120}
+              height={40}
+              className="h-8 w-auto object-contain"
+              priority
+            />
+          ) : null}
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">

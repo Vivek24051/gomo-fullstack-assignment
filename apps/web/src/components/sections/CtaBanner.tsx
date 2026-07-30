@@ -10,14 +10,16 @@ export function CtaBanner({ heading, backgroundImage, logoMark, ctaLabel, ctaHre
       {/* Same Container every other section uses, so this card's left/right edges
           align with the grids above/below it, rather than a separate custom inset. */}
       <Container>
-        <div className="relative flex aspect-[1280/656] items-center justify-center overflow-hidden rounded-[10px]">
-          <Image
-            src={getStrapiMediaURL(backgroundImage.url, backgroundImage.updatedAt)}
-            alt={backgroundImage.alternativeText ?? ''}
-            fill
-            sizes="100vw"
-            className="object-cover"
-          />
+        <div className="relative flex aspect-[1280/656] items-center justify-center overflow-hidden rounded-[10px] bg-ink">
+          {backgroundImage ? (
+            <Image
+              src={getStrapiMediaURL(backgroundImage.url, backgroundImage.updatedAt)}
+              alt={backgroundImage.alternativeText ?? ''}
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+          ) : null}
           <div className="absolute inset-0 bg-ink/40" aria-hidden="true" />
 
           <div className="relative z-10 flex flex-col items-center gap-6 px-6 text-center text-cream">

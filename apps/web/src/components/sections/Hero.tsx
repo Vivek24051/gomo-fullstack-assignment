@@ -3,16 +3,18 @@ import { getStrapiMediaURL } from '@/lib/strapi/media';
 import type { HeroSection } from '@/lib/strapi/types';
 
 export function Hero({ kicker, heading, subheading, backgroundImage, showScrollCue }: HeroSection) {
-  const isVideo = backgroundImage.mime.startsWith('video/');
-  const src = getStrapiMediaURL(backgroundImage.url, backgroundImage.updatedAt);
+  const isVideo = backgroundImage?.mime.startsWith('video/') ?? false;
+  const src = backgroundImage ? getStrapiMediaURL(backgroundImage.url, backgroundImage.updatedAt) : null;
   const hasBottomContent = Boolean(subheading) || showScrollCue;
 
   return (
     <section className="relative min-h-[85vh] overflow-hidden">
       {/* Inset from the section's edges — Figma has the page's cream background showing
-          as a gutter on both sides rather than a full-bleed edge-to-edge photo/video. */}
-      <div className="absolute inset-x-6 inset-y-0 overflow-hidden rounded-[11px] sm:inset-x-8 lg:inset-x-12">
-        {isVideo ? (
+          as a gutter on both sides rather than a full-bleed edge-to-edge photo/video.
+          bg-ink fallback keeps the overlay/text readable if backgroundImage is unset —
+          "required" in Strapi only validates admin saves, not permanent presence. */}
+      <div className="absolute inset-x-6 inset-y-0 overflow-hidden rounded-[11px] bg-ink sm:inset-x-8 lg:inset-x-12">
+        {src && isVideo ? (
           <video
             src={src}
             autoPlay
@@ -22,16 +24,16 @@ export function Hero({ kicker, heading, subheading, backgroundImage, showScrollC
             aria-hidden="true"
             className="h-full w-full object-cover"
           />
-        ) : (
+        ) : src ? (
           <Image
             src={src}
-            alt={backgroundImage.alternativeText ?? ''}
+            alt={backgroundImage?.alternativeText ?? ''}
             fill
             priority
             sizes="100vw"
             className="object-cover"
           />
-        )}
+        ) : null}
         <div className="absolute inset-0 bg-ink/40" aria-hidden="true" />
       </div>
 

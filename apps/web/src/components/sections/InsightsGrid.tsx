@@ -15,6 +15,11 @@ function formatDate(date: string | null): string | null {
 }
 
 export function InsightsGrid({ kicker, heading, ctaLabel, ctaHref, insights }: InsightsGridSection) {
+  // image is schema-required, but that only validates admin saves — an entry can
+  // still end up with it null mid-edit. The card is built around that photo, so an
+  // entry without one is skipped rather than shown broken.
+  const withImage = insights.filter((insight) => insight.image !== null);
+
   return (
     <section className="py-10 sm:py-14">
       <Container className="flex flex-col items-center text-center">
@@ -27,17 +32,18 @@ export function InsightsGrid({ kicker, heading, ctaLabel, ctaHref, insights }: I
         ) : null}
       </Container>
 
-      {insights.length > 0 ? (
+      {withImage.length > 0 ? (
         <Container className="mt-14 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-          {insights.map((insight) => {
+          {withImage.map((insight) => {
             const displayDate = formatDate(insight.date);
             const hasMetaRow = Boolean(displayDate) || Boolean(insight.href);
             const cardClassName = 'group relative flex aspect-square flex-col overflow-hidden rounded-xl';
             const cardContent = (
               <>
                 <Image
-                  src={getStrapiMediaURL(insight.image.url, insight.image.updatedAt)}
-                  alt={insight.image.alternativeText ?? ''}
+                  // Non-null assertion is safe here — filtered above.
+                  src={getStrapiMediaURL(insight.image!.url, insight.image!.updatedAt)}
+                  alt={insight.image!.alternativeText ?? ''}
                   fill
                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
