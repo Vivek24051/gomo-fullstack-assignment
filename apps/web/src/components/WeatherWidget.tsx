@@ -40,9 +40,10 @@ export async function WeatherWidget({ location = DEFAULT_LOCATION }: { location?
 export function WeatherWidgetSkeleton() {
   return (
     <section className="py-10">
-      <Container className="flex flex-col items-center gap-2">
-        <p className="text-xs tracking-wide text-ink uppercase">Current weather</p>
-        <div className="h-9 w-64 animate-pulse rounded-full bg-ink/5" />
+      <Container className="flex flex-col items-center gap-3">
+        <p className="text-sm font-semibold tracking-wide text-ink uppercase">Current weather</p>
+        <div className="h-11 w-72 animate-pulse rounded-full bg-ink/5" />
+        <div className="h-10 w-56 animate-pulse rounded-full bg-ink/5" />
       </Container>
     </section>
   );

@@ -80,9 +80,9 @@ export function WeatherSearch({ initial }: { initial: WeatherDisplay | null }) {
 
   return (
     <div className="flex flex-col items-center gap-3">
-      <p className="text-xs tracking-wide text-ink uppercase">Current weather</p>
+      <p className="text-sm font-semibold tracking-wide text-ink uppercase">Current weather</p>
 
-      <div className="rounded-full border border-ink/10 px-5 py-2.5 text-sm text-ink/60">
+      <div className="rounded-full border border-ink/20 px-6 py-3 text-base font-medium text-ink sm:text-lg">
         {weather ? (
           <span>
             {weather.label}: {Math.round(weather.temperatureC)}°C, {describeWeatherCode(weather.weatherCode)}
@@ -100,12 +100,12 @@ export function WeatherSearch({ initial }: { initial: WeatherDisplay | null }) {
           placeholder="Search a city…"
           aria-label="Search for a city's weather"
           disabled={status === 'loading'}
-          className="rounded-full border border-ink/10 bg-transparent px-4 py-1.5 text-sm text-ink placeholder:text-ink/40 focus:outline-none disabled:opacity-60"
+          className="rounded-full border border-ink/20 bg-transparent px-4 py-2 text-base text-ink placeholder:text-ink/50 focus:outline-none disabled:opacity-60"
         />
         <button
           type="submit"
           disabled={status === 'loading' || !query.trim()}
-          className="shrink-0 rounded-full border border-ink/10 px-4 py-1.5 text-sm text-ink hover:bg-ink/5 disabled:opacity-60"
+          className="shrink-0 rounded-full border border-ink/20 px-4 py-2 text-base font-medium text-ink hover:bg-ink/5 disabled:opacity-60"
         >
           {status === 'loading' ? 'Searching…' : 'Search'}
         </button>
