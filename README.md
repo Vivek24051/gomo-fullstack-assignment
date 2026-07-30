@@ -51,7 +51,8 @@ dynamic SEO metadata, and a generated sitemap/robots.txt.
   newsletter, social links, ISO badges, legal bar), Global (site-wide SEO defaults).
 - **Newsletter signup** — real POST endpoint backed by Strapi, with server-side validation and
   spam protection (see [Newsletter Flow](#newsletter-flow)).
-- **Live weather widget** — external API integration (Open-Meteo), independent of the CMS.
+- **Live weather widget** — external API integration (Open-Meteo), independent of the CMS, with an
+  interactive search to look up any city's current weather.
 - **ISR (Incremental Static Regeneration)** — 60s time-based revalidation everywhere, plus an
   on-demand webhook endpoint so a Strapi publish reflects immediately instead of waiting.
 - **Dynamic SEO** — per-page `generateMetadata`, OG/Twitter cards, a CMS-driven `sitemap.xml`,
@@ -358,6 +359,14 @@ sequenceDiagram
   widget, comfortably inside Open-Meteo's free-tier limits.
 - Defaults to Pune, India, but both the client function and the component accept coordinates as a
   parameter — genuinely reusable for another location, not hardcoded to one call site.
+
+**Interactive city search.** `WeatherSearch.tsx` is a small Client Component layered on top of
+that server-fetched default — it lets a visitor type any city, calls Open-Meteo's free Geocoding
+API to resolve it to coordinates, then the Forecast API for that location's current weather, and
+replaces the displayed result. Both endpoints are free/keyless/CORS-enabled, so this calls them
+directly from the browser rather than proxying through the Next.js backend — there's no secret to
+protect here, unlike the default fetch in `lib/weather/client.ts`. A city that doesn't resolve, or
+a network failure mid-search, shows an inline error message rather than breaking the widget.
 
 ## API Routes
 
