@@ -432,6 +432,14 @@ function, so it and the Next.js frontend live on different platforms.
 | CMS Admin | https://gomo-fullstack-assignment.onrender.com/admin |
 | CMS API   | https://gomo-fullstack-assignment.onrender.com/api   |
 
+**CMS admin access** (as requested in the assignment brief): Strapi authenticates by email, not a
+free-text username, and enforces a password policy the literal `gomoadmin`/`gomoadmin` pair can't
+satisfy (needs a mixed-case letter + a number). A dedicated reviewer account was created instead,
+named to match what was asked for as closely as Strapi's constraints allow:
+
+- **Email:** `gomoadmin@gomogroup.local`
+- **Password:** `Gomoadmin1`
+
 **`apps/web` → Vercel**
 
 1. Import the repo, set the **Root Directory** to `apps/web`.
