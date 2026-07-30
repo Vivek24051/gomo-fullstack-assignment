@@ -10,7 +10,11 @@ export function CtaBanner({ heading, backgroundImage, logoMark, ctaLabel, ctaHre
       {/* Same Container every other section uses, so this card's left/right edges
           align with the grids above/below it, rather than a separate custom inset. */}
       <Container>
-        <div className="relative flex aspect-[1280/656] items-center justify-center overflow-hidden rounded-[10px] bg-ink">
+        {/* Fixed aspect-ratio alone made this very short on narrow mobile widths (height
+            derives purely from width), clipping the heading/button via overflow-hidden.
+            min-h keeps mobile tall enough to fit content; the exact Figma ratio only
+            applies from sm: up, where the resulting height is already generous. */}
+        <div className="relative flex min-h-[480px] items-center justify-center overflow-hidden rounded-[10px] bg-ink sm:aspect-[1280/656] sm:min-h-0">
           {backgroundImage ? (
             <Image
               src={getStrapiMediaURL(backgroundImage.url, backgroundImage.updatedAt)}
