@@ -24,7 +24,7 @@ export function CtaBanner({ heading, backgroundImage, logoMark, ctaLabel, ctaHre
 
           <div className="relative z-10 flex flex-col items-center gap-6 px-6 text-center text-white">
             {logoMark ? (
-              <div className="relative h-10 w-10">
+              <div className="relative h-[122px] w-[197px] sm:h-[163px] sm:w-[263px] lg:h-[204px] lg:w-[329px]">
                 <Image
                   src={getStrapiMediaURL(logoMark.url, logoMark.updatedAt)}
                   alt={logoMark.alternativeText ?? ''}
