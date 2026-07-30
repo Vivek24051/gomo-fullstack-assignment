@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 
 const variants = {
-  dark: 'bg-ink text-cream hover:bg-ink/90',
+  dark: 'bg-ink text-white hover:bg-ink/90',
   light: 'bg-cream text-ink hover:bg-cream/90',
 } as const;
 

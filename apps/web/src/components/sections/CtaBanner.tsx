@@ -22,7 +22,7 @@ export function CtaBanner({ heading, backgroundImage, logoMark, ctaLabel, ctaHre
           ) : null}
           <div className="absolute inset-0 bg-ink/40" aria-hidden="true" />
 
-          <div className="relative z-10 flex flex-col items-center gap-6 px-6 text-center text-cream">
+          <div className="relative z-10 flex flex-col items-center gap-6 px-6 text-center text-white">
             {logoMark ? (
               <div className="relative h-10 w-10">
                 <Image

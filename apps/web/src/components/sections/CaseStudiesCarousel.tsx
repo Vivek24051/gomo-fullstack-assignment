@@ -85,7 +85,7 @@ export function CaseStudiesCarousel({ caseStudies }: { caseStudies: CaseStudyCar
                 sizes="(min-width: 640px) 360px, 280px"
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="absolute inset-x-0 bottom-0 flex flex-col bg-ink/50 text-cream backdrop-blur-md">
+              <div className="absolute inset-x-0 bottom-0 flex flex-col bg-ink/50 text-white backdrop-blur-md">
                 <div className={`px-6 py-4 ${hasBottomRow ? 'border-b border-cream/20' : ''}`}>
                   <h3 className="font-title text-[24px] leading-[33px] font-normal tracking-[0]">
                     {caseStudy.title}
@@ -95,7 +95,7 @@ export function CaseStudiesCarousel({ caseStudies }: { caseStudies: CaseStudyCar
                   <div className="flex items-center">
                     {caseStudy.subtitle ? (
                       <div className={`flex-1 px-6 py-4 ${caseStudy.href ? 'border-r border-cream/20' : ''}`}>
-                        <p className="font-title text-[14px] leading-[14px] font-normal tracking-[0] text-cream/80">
+                        <p className="font-title text-[14px] leading-[14px] font-normal tracking-[0] text-white/80">
                           {caseStudy.subtitle}
                         </p>
                       </div>

@@ -73,7 +73,7 @@ export function Footer({ data }: { data: FooterData | null }) {
   const badges = isoBadges ?? [];
 
   return (
-    <footer className="mt-auto overflow-hidden bg-[#222222] text-cream">
+    <footer className="mt-auto overflow-hidden bg-[#222222] text-white">
       {wordmark ? (
         <p
           aria-hidden="true"
@@ -87,7 +87,7 @@ export function Footer({ data }: { data: FooterData | null }) {
         <div className="grid min-w-0 grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-4">
           {columns.map((column) => (
             <div key={column.id} className="min-w-0">
-              <h3 className="text-sm font-medium text-cream">{column.title}</h3>
+              <h3 className="text-sm font-medium text-white">{column.title}</h3>
               <ul className="mt-4 flex flex-col gap-2">
                 {column.links.map((link) => (
                   <li key={link.id}>
@@ -95,7 +95,7 @@ export function Footer({ data }: { data: FooterData | null }) {
                       href={link.href}
                       target={link.openInNewTab ? '_blank' : undefined}
                       rel={link.openInNewTab ? 'noreferrer' : undefined}
-                      className="text-sm text-cream/70 hover:text-cream"
+                      className="text-sm text-white/70 hover:text-white"
                     >
                       {link.label}
                     </Link>
@@ -107,8 +107,8 @@ export function Footer({ data }: { data: FooterData | null }) {
 
           {hasContact ? (
             <div className="min-w-0">
-              {contactHeading ? <h3 className="text-sm font-medium text-cream">{contactHeading}</h3> : null}
-              <div className="mt-4 flex flex-col gap-4 text-sm text-cream/70">
+              {contactHeading ? <h3 className="text-sm font-medium text-white">{contactHeading}</h3> : null}
+              <div className="mt-4 flex flex-col gap-4 text-sm text-white/70">
                 {contactPhone || contactEmail ? (
                   <ul className="flex flex-col gap-2">
                     {contactPhone ? <li className="break-words">{contactPhone}</li> : null}
@@ -117,13 +117,13 @@ export function Footer({ data }: { data: FooterData | null }) {
                 ) : null}
                 {visitingAddress ? (
                   <div>
-                    {visitingAddressLabel ? <p className="text-cream">{visitingAddressLabel}</p> : null}
+                    {visitingAddressLabel ? <p className="text-white">{visitingAddressLabel}</p> : null}
                     <p className="whitespace-pre-line">{visitingAddress}</p>
                   </div>
                 ) : null}
                 {postalAddress ? (
                   <div>
-                    {postalAddressLabel ? <p className="text-cream">{postalAddressLabel}</p> : null}
+                    {postalAddressLabel ? <p className="text-white">{postalAddressLabel}</p> : null}
                     <p className="whitespace-pre-line">{postalAddress}</p>
                   </div>
                 ) : null}
@@ -133,8 +133,8 @@ export function Footer({ data }: { data: FooterData | null }) {
         </div>
 
         <div className="min-w-0">
-          {newsletterHeading ? <h3 className="font-display text-xl text-cream">{newsletterHeading}</h3> : null}
-          {newsletterSubtext ? <p className="mt-2 text-sm text-cream/70">{newsletterSubtext}</p> : null}
+          {newsletterHeading ? <h3 className="font-display text-xl text-white">{newsletterHeading}</h3> : null}
+          {newsletterSubtext ? <p className="mt-2 text-sm text-white/70">{newsletterSubtext}</p> : null}
 
           <NewsletterForm />
 
@@ -164,7 +164,7 @@ export function Footer({ data }: { data: FooterData | null }) {
                       target="_blank"
                       rel="noreferrer"
                       aria-label={social.platform}
-                      className="flex h-9 w-9 items-center justify-center rounded-full border border-cream/30 text-cream"
+                      className="flex h-9 w-9 items-center justify-center rounded-full border border-cream/30 text-white"
                     >
                       <span className="h-4 w-4">{socialIcons[social.platform]}</span>
                     </Link>

@@ -6,6 +6,7 @@
   --color-ink: #1E2E31;
   --color-cream: #f4ede1;
   --color-sage: #B8D1D1;
+  --color-white: #ffffff;
 }
 
 @theme inline {
@@ -14,6 +15,7 @@
   --color-ink: var(--color-ink);
   --color-cream: var(--color-cream);
   --color-sage: var(--color-sage);
+  --color-white: var(--color-white);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-display);

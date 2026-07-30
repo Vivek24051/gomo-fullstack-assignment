@@ -33,7 +33,7 @@ export function IndustrySwitcher({ industries }: { industries: IndustryPreview[]
               onClick={() => setActiveIndex(index)}
               aria-current={index === activeIndex}
               className={`flex w-full items-center justify-between gap-2 py-3 text-left text-lg transition-colors ${
-                index === activeIndex ? 'text-cream' : 'text-cream/40 hover:text-cream/70'
+                index === activeIndex ? 'text-white' : 'text-white/40 hover:text-white/70'
               }`}
             >
               <span>{industry.name}</span>
@@ -52,7 +52,7 @@ export function IndustrySwitcher({ industries }: { industries: IndustryPreview[]
           sizes="(min-width: 1024px) 60vw, 100vw"
           className="object-cover"
         />
-        <div className="absolute inset-x-0 bottom-0 flex flex-col gap-3 bg-ink/50 p-8 text-cream backdrop-blur-md">
+        <div className="absolute inset-x-0 bottom-0 flex flex-col gap-3 bg-ink/50 p-8 text-white backdrop-blur-md">
           <h3 className="text-xl font-medium">{active.name}</h3>
           {active.tags && active.tags.length > 0 ? (
             <div className="flex flex-wrap gap-2">
@@ -63,7 +63,7 @@ export function IndustrySwitcher({ industries }: { industries: IndustryPreview[]
               ))}
             </div>
           ) : null}
-          {active.description ? <p className="max-w-md text-sm text-cream/80">{active.description}</p> : null}
+          {active.description ? <p className="max-w-md text-sm text-white/80">{active.description}</p> : null}
           {active.href ? (
             <Link
               href={active.href}

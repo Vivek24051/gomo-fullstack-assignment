@@ -50,7 +50,7 @@ export function NewsletterForm() {
           required
           placeholder="Email address"
           disabled={status === 'submitting'}
-          className="w-full bg-transparent text-sm text-cream placeholder:text-cream/50 focus:outline-none disabled:opacity-60"
+          className="w-full bg-transparent text-sm text-white placeholder:text-white/50 focus:outline-none disabled:opacity-60"
         />
         {/* Honeypot: hidden from real users via CSS (not display:none, which some bots
             skip), never focusable/autofilled — see app/api/newsletter/route.ts. */}
@@ -66,13 +66,13 @@ export function NewsletterForm() {
           type="submit"
           aria-label="Subscribe"
           disabled={status === 'submitting'}
-          className="shrink-0 text-cream disabled:opacity-60"
+          className="shrink-0 text-white disabled:opacity-60"
         >
           <span aria-hidden="true">→</span>
         </button>
       </form>
       {message ? (
-        <p className={`mt-2 text-sm ${status === 'error' ? 'text-red-300' : 'text-cream/70'}`} role="status">
+        <p className={`mt-2 text-sm ${status === 'error' ? 'text-red-300' : 'text-white/70'}`} role="status">
           {message}
         </p>
       ) : null}

@@ -39,7 +39,7 @@ export function Hero({ kicker, heading, subheading, backgroundImage, showScrollC
 
       {/* Spread top-to-bottom rather than clustered in the middle — kicker near the top,
           heading in the middle, subtext + scroll cue near the bottom (matches Figma). */}
-      <div className="absolute inset-0 z-10 flex flex-col items-center justify-between px-6 py-16 text-center text-cream">
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-between px-6 py-16 text-center text-white">
         {kicker ? <p className="text-sm sm:text-base">{kicker}</p> : null}
         <h1 className="text-balance font-display text-[clamp(2.5rem,9vw,8rem)] leading-[0.95] font-medium">
           {heading}

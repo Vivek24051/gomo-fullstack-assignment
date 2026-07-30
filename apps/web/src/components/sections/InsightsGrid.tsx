@@ -49,11 +49,11 @@ export function InsightsGrid({ kicker, heading, ctaLabel, ctaHref, insights }: I
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 {insight.tag ? (
-                  <span className="absolute top-4 left-4 w-fit rounded-full bg-ink/50 px-3 py-1 text-xs font-medium text-cream backdrop-blur-md">
+                  <span className="absolute top-4 left-4 w-fit rounded-full bg-ink/50 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
                     {insight.tag}
                   </span>
                 ) : null}
-                <div className="absolute inset-x-0 bottom-0 flex flex-col bg-ink/50 text-cream backdrop-blur-md">
+                <div className="absolute inset-x-0 bottom-0 flex flex-col bg-ink/50 text-white backdrop-blur-md">
                   <div className={`p-4 ${hasMetaRow ? 'border-b border-cream/20' : ''}`}>
                     <h3 className="text-lg font-medium">{insight.title}</h3>
                   </div>
@@ -61,7 +61,7 @@ export function InsightsGrid({ kicker, heading, ctaLabel, ctaHref, insights }: I
                     <div className="flex items-center">
                       {displayDate ? (
                         <div className={`flex-1 p-4 ${insight.href ? 'border-r border-cream/20' : ''}`}>
-                          <span className="text-sm text-cream/70">{displayDate}</span>
+                          <span className="text-sm text-white/70">{displayDate}</span>
                         </div>
                       ) : null}
                       {/* Only "Read more" is clickable, not the whole card. */}
