@@ -1,8 +1,8 @@
 # apps/cms — Strapi CMS
 
-Headless CMS for the GO MO Group homepage rebuild. Every homepage section, the header, the footer,
-and all SEO metadata are modeled here as CMS content — the Next.js frontend (`apps/web`) never
-hardcodes copy, images, or ordering.
+Headless CMS backing the homepage rebuild in this repo. Every homepage section, the header, the
+footer, and all SEO metadata are modeled here as CMS content — the Next.js frontend (`apps/web`)
+never hardcodes copy, images, or ordering.
 
 ## Content model
 
@@ -63,10 +63,9 @@ credentials are stored anywhere in this repo.
    to create the first admin account.
 3. On any later run, the same URL shows a normal login form for that account.
 
-Note on the assignment's literal `gomoadmin` / `gomoadmin` credential pair: Strapi's admin
-identity is email-based (not a free-text username) and enforces a password policy (8+ characters,
-upper + lower case, a number), so that exact pair can't be used as-is — use any email/password
-that satisfies the policy when registering.
+Strapi's admin identity is email-based (not a free-text username) and enforces a password policy
+(8+ characters, upper + lower case, a number) — use any email/password that satisfies it when
+registering.
 
 ## API access for the frontend
 

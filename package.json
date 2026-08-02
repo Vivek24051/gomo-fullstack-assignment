@@ -1,5 +1,5 @@
 {
-  "name": "gomo-fullstack-assignment",
+  "name": "strapi-nextjs-pagebuilder",
   "private": true,
   "workspaces": [
     "apps/*"

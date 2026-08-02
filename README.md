@@ -1,9 +1,10 @@
-# GO MO Group — Full Stack Developer Assignment
+# Strapi + Next.js Dynamic Page Builder
 
-A CMS-driven marketing homepage rebuilt from a Figma design. Every piece of user-facing content
-— headings, CTAs, images, footer, navigation, SEO metadata — is managed through a headless CMS
-via a **dynamic, reorderable page-builder**, not hardcoded in the frontend. Built as a 24-hour
-take-home assignment; this document reflects the codebase as it actually stands.
+A CMS-driven marketing homepage built as a personal practice project. Every piece of user-facing
+content — headings, CTAs, images, footer, navigation, SEO metadata — is managed through a headless
+CMS via a **dynamic, reorderable page-builder**, not hardcoded in the frontend. Built to explore a
+production-style Next.js + Strapi integration end to end: CMS content modeling, typed data
+fetching, ISR, a custom backend API, an external API integration, and a real deployment.
 
 ## Table of Contents
 
@@ -23,7 +24,7 @@ take-home assignment; this document reflects the codebase as it actually stands.
 - [Security Decisions](#security-decisions)
 - [Performance Optimizations](#performance-optimizations)
 - [Deployment](#deployment)
-- [Assignment Checklist](#assignment-checklist)
+- [Feature Checklist](#feature-checklist)
 - [Future Improvements](#future-improvements)
 - [Author](#author)
 
@@ -133,7 +134,7 @@ flowchart LR
 ## Folder Structure
 
 ```
-gomo-fullstack-assignment/
+strapi-nextjs-pagebuilder/
 ├── apps/
 │   ├── web/                          # Next.js frontend
 │   │   ├── src/
@@ -183,8 +184,8 @@ gomo-fullstack-assignment/
 Requires **Node.js 20.x** (Strapi 5's declared engine range; Next.js 16 also requires ≥20.9).
 
 ```bash
-git clone <repo-url>
-cd gomo-fullstack-assignment
+git clone https://github.com/Vivek24051/strapi-nextjs-pagebuilder.git
+cd strapi-nextjs-pagebuilder
 npm install
 ```
 
@@ -424,21 +425,12 @@ a network failure mid-search, shows an inline error message rather than breaking
 Two independently deployable apps — Strapi is a persistent Node server, not a serverless
 function, so it and the Next.js frontend live on different platforms.
 
-**Live:**
+**Live:** deployed on Vercel (frontend) and Render (Strapi CMS + PostgreSQL). See the repo's About
+section for the current frontend URL.
 
-|           | URL                                                  |
-| --------- | ---------------------------------------------------- |
-| Frontend  | https://gomo-fullstack-assignment-web.vercel.app     |
-| CMS Admin | https://gomo-fullstack-assignment.onrender.com/admin |
-| CMS API   | https://gomo-fullstack-assignment.onrender.com/api   |
-
-**CMS admin access** (as requested in the assignment brief): Strapi authenticates by email, not a
-free-text username, and enforces a password policy the literal `gomoadmin`/`gomoadmin` pair can't
-satisfy (needs a mixed-case letter + a number). A dedicated reviewer account was created instead,
-named to match what was asked for as closely as Strapi's constraints allow:
-
-- **Email:** `gomoadmin@gomogroup.local`
-- **Password:** `Gomoadmin1`
+**CMS admin access**: Strapi has no seeded admin account — see [CMS admin
+access](apps/cms/README.md#cms-admin-access) in `apps/cms/README.md` for how the first admin
+account gets created. No credentials are stored anywhere in this repo.
 
 **`apps/web` → Vercel**
 
@@ -467,7 +459,7 @@ named to match what was asked for as closely as Strapi's constraints allow:
    Media Library instead, which uses a normal HTTP upload rather than the transfer tool's
    WebSocket connection.
 
-## Assignment Checklist
+## Feature Checklist
 
 | Requirement                      | Status                                                |
 | -------------------------------- | ----------------------------------------------------- |
@@ -491,8 +483,6 @@ named to match what was asked for as closely as Strapi's constraints allow:
   fixed yet to avoid rushing a focus-trap implementation.
 - **Case Studies vs. Insights click-target consistency** — Case Studies cards are click-anywhere;
   Insights cards restrict the click target to "Read more" only. Worth picking one pattern.
-- **Untested revalidation webhook** — the payload-parsing logic in `/api/revalidate` has been
-  verified by direct `curl`, but not yet against a real Strapi webhook call end-to-end.
 - **Language switcher is UI-only** — the Header's "En" dropdown renders but isn't wired to
   anything; Strapi's i18n plugin would be the natural next step if multi-language content becomes
   a real requirement.
